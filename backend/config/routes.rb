@@ -7,13 +7,24 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       devise_for :users, controllers: { sessions: :sessions }, path_names: { sign_in: :login }
+
+      #login users
       namespace :users do
         concerns :common
         resource :users, only: [:update, :destroy, :show]
+        resources :posts
+        resources :movies, only: [:index]
       end
+
+      #admin users
       namespace :admin do
         resources :movies
+        resources :posts
+        post '/posts/:id/publish', to: 'posts#publish'
       end
+
+      #public users
+      resources :movies
     end
   end
 

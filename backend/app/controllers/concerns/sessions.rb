@@ -19,4 +19,8 @@ module Sessions
     json_response({error: "Permission denied!"}, :forbidden) unless @current_user.is_admin
   end
 
+  def authorize_user
+    json_response({error: "Permission denied!"}, :forbidden) unless @current_user.id == @post.user_id
+  end
+
 end
