@@ -1,5 +1,5 @@
 module Response
-  def json_response(object, status = :ok, serializer = nil)
+  def json_response(object, serializer = nil, status = :ok)
     if serializer.nil?
       render json: object, status: status
     else

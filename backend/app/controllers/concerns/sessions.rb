@@ -23,4 +23,8 @@ module Sessions
     json_response({error: "Permission denied!"}, :forbidden) unless @current_user.id == @post.user_id
   end
 
+  # def logged_in?
+  #   !current_user.nil?
+  # end
+
 end

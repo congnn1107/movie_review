@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  default_url_options :host => "localhost:3000"
+
   concern :common do
     post "/register", to: "users#create"
     # post "/login", to: "sessions#create"
@@ -19,12 +21,17 @@ Rails.application.routes.draw do
       #admin users
       namespace :admin do
         resources :movies
-        resources :posts
-        post '/posts/:id/publish', to: 'posts#publish'
+        resources :posts do
+          post :publish
+        end
       end
 
       #public users
-      resources :movies
+      namespace :public do
+        resources :movies
+        resources :posts, param: :slug
+        get "/search", to: "search#index"
+      end
     end
   end
 

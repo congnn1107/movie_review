@@ -3,7 +3,7 @@ module Api
     module Users
       class MoviesController < BaseController
         def index
-          json_response(Movie.all, :ok, "FullMovieSerializer")
+          json_response(Movie.all, "FullMovieSerializer")
         end
       end
     end
