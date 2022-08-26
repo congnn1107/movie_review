@@ -4,12 +4,13 @@ module Api
       class UsersController < BaseController
         skip_before_action :authenticate_user, only: [:create]
         before_action -> { Post.set_default_param }
+
         def create
           @user = User.new(user_params)
           if @user.save
             json_response(@user)
           else
-            json_response({ error: @user.errors.full_messages }, :unprocessable_entity)
+            json_response({ error: @user.errors.full_messages }, nil, :unprocessable_entity)
           end
         end
 
@@ -19,7 +20,7 @@ module Api
 
             json_response(@current_user)
           else
-            json_response({ error: "Something went wrong!" }, :unprocessable_entity)
+            json_response({ error: "Something went wrong!" }, nil, :unprocessable_entity)
           end
         end
 

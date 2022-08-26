@@ -3,7 +3,7 @@ module Api
     module Public
       class SearchController < BaseController
         def index
-          posts = Post.ransack(title_cont: params[:q]).result
+          posts = Post.published.ransack(title_cont: params[:q]).result
           json_response(posts)
         end
       end

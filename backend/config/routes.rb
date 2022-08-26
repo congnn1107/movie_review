@@ -16,6 +16,8 @@ Rails.application.routes.draw do
         resource :users, only: [:update, :destroy, :show]
         resources :posts
         resources :movies, only: [:index]
+        
+        resources :votes, only: [:create, :update, :destroy]
       end
 
       #admin users

@@ -4,7 +4,7 @@ class SessionsController < Devise::SessionsController
     if user && user.valid_password?(params[:password])
       json_response({ user: user, token: user.generate_token })
     else
-      json_response({ error: "Invalid login infomation!" }, :unauthorized)
+      json_response({ error: "Invalid login infomation!" }, nil, :unauthorized)
     end
   end
 end

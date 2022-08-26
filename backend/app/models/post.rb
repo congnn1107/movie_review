@@ -4,9 +4,9 @@ class Post < ApplicationRecord
   validates :slug, presence: true, uniqueness: true, on: :save
   has_one_attached :cover
 
+  has_many :votes
   belongs_to :movie
   belongs_to :user
-
   before_save :set_slug
 
   scope :published, -> { where is_publish: true }
