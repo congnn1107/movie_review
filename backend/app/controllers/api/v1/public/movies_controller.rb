@@ -7,7 +7,7 @@ module Api
         end
 
         def show
-          json_response(Movie.find(params[:id]))
+          json_response(Movie.includes(:posts).find(params[:id]))
         end
       end
     end

@@ -22,7 +22,9 @@ Rails.application.routes.draw do
       namespace :admin do
         resources :movies
         resources :posts do
-          post :publish
+          member do
+            post :publish
+          end
         end
       end
 
