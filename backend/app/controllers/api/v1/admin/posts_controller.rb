@@ -1,9 +1,12 @@
 module Api
   module V1
     module Admin
-      class PostsController < Api::V1::Users::PostsController
+      class PostsController < BaseController
+
+        include Api::V1::Concerns::PostsManagement
+
         before_action :admin_user
-        skip_before_action :authorize_user, only: [:index, :publish]
+        before_action :authorize_user, except: [:index, :publish, :create]
 
         def index
           json_response(Post.all)

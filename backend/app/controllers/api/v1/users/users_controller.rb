@@ -3,7 +3,7 @@ module Api
     module Users
       class UsersController < BaseController
         skip_before_action :authenticate_user, only: [:create]
-
+        before_action -> { Post.set_default_param }
         def create
           @user = User.new(user_params)
           if @user.save
